@@ -6,6 +6,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+type User struct {
+	ID		string	`bson:"id"`
+	Name	string	`bson:"name"`
+}
+
 func MyMongo() (*mongo.Client) {
 	atlasURI := "mongodb+srv://myapi:pri@jean.zjitk.mongodb.net/myAPI?retryWrites=true&w=majority"
 
