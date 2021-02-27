@@ -7,7 +7,6 @@ import (
 )
 
 func MyMongo(atlasURI string) (*mongo.Client) {
-
 	client, err := mongo.NewClient(options.Client().ApplyURI(atlasURI))
 	if err != nil {
 		panic(err.Error())
