@@ -11,8 +11,7 @@ type User struct {
 	Name	string	`bson:"name"`
 }
 
-func MyMongo() (*mongo.Client) {
-	atlasURI := "mongodb+srv://myapi:pri@jean.zjitk.mongodb.net/myAPI?retryWrites=true&w=majority"
+func MyMongo(atlasURI string) (*mongo.Client) {
 
 	client, err := mongo.NewClient(options.Client().ApplyURI(atlasURI))
 	if err != nil {
