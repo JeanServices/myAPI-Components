@@ -26,7 +26,7 @@ func MyMongo(atlasURI string) (*mongo.Client) {
 	return client
 }
 
-func insertUser(client *mongo.Client, id string, name string) {
+func InsertUser(client *mongo.Client, id string, name string) {
 
 	_user := User{
 		ID: id,
