@@ -3,6 +3,7 @@ package jeanservices
 import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 func RegisterRoutes(server *fiber.App, client *mongo.Client) {
@@ -21,8 +22,6 @@ func RegisterRoutes(server *fiber.App, client *mongo.Client) {
    })
 
    server.Post("/api/v1/create", func(c *fiber.Ctx) error {
-	   insertUser(client, "352905372375823", "a")
-
 	   fmt.Println(c.Body())
 
 	   return c.JSON(fiber.Map{
