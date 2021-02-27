@@ -6,9 +6,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type CreateUser struct {
-	ID
-	Name
+type Body struct {
+	Name	string
+	Data	interface{}
 }
 
 func RegisterRoutes(server *fiber.App, client *mongo.Client) {
@@ -26,7 +26,11 @@ func RegisterRoutes(server *fiber.App, client *mongo.Client) {
 	})
 
 	server.Post("/api/v1/create", func(c *fiber.Ctx) error {
-		err := fiber.BodyParser(&CreateUser)
+		err := c.BodyParser(&Body{})
+		if err != nil {
+			panic(err)
+		}
+
 		fmt.Println(c.Body())
 
 		return c.JSON(fiber.Map{
