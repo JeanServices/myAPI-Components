@@ -20,13 +20,13 @@ func RegisterRoutes(server *fiber.App, client *mongo.Client) {
 	server.Get("/api/v1", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
 			"status": 200,
-			"data": nil,
 			"message": "ok",
+			"data": nil,
 			"exited_code": 0,
 		})
 	})
 
-	server.Post("/api/v1/create", func(c *fiber.Ctx) error {
+	server.Post("/api/v1/user/create", func(c *fiber.Ctx) error {
 		err := c.BodyParser(&Body{})
 		if err != nil {
 			panic(err)
@@ -36,8 +36,8 @@ func RegisterRoutes(server *fiber.App, client *mongo.Client) {
 
 		return c.JSON(fiber.Map{
 			"status": 200,
-			"data": nil,
 			"message": "ok",
+			"data": nil,
 			"exited_code": 0,
 		})
 	})
