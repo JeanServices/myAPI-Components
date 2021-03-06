@@ -25,15 +25,28 @@ func RegisterRoutes(server *fiber.App, client *mongo.Client) {
 			"exited_code": 0,
 		})
 	})
-
-	server.Post("/api/v1/user/create", func(c *fiber.Ctx) error {
-		err := c.BodyParser(&Body{})
+	
+	server.Get("/api/v1/get/user/:id", func (c *fiber.Ctx) error {
+		var data = make(map[string]interface{})
+		err := client.Database("myAPI").Collection("users").FindOne(context.TODO(), bson.D{{"id", c.Params("id")}}).Decode(&data)
 		if err != nil {
-			panic(err)
+			return c.JSON(fiber.Map{
+				"status": 200,
+				"message": err.Error(),
+				"data": nil,
+				"exited_code": 1,
+			})
 		}
 
-		fmt.Println(c.Body())
+		return c.JSON(fiber.Map{
+			"status": 200,
+			"message": "obtained",
+			"data": data,
+			"exited_code": 0,
+		})
+	})
 
+	server.Post("/api/v1/user/create", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
 			"status": 200,
 			"message": "ok",
