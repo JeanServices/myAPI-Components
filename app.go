@@ -16,6 +16,11 @@ func MyMongo(atlasURI string) (*mongo.Client) {
 	if err != nil {
 		panic(err.Error())
 	}
+	
+	err := client.Ping(context.TODO(), nil)
+	if err != nil {
+		panic(err.Error())
+	}
 
 	return client
 }
